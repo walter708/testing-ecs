@@ -1,11 +1,10 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ca-central-1:164905892123:task-definition/nodejs-app-task-definition:13",
+  "taskDefinitionArn": "arn:aws:ecs:ca-central-1:164905892123:task-definition/nodejs-app-task-definition:15",
   "containerDefinitions": [
     {
       "name": "nodejs-app",
       "image": "164905892123.dkr.ecr.ca-central-1.amazonaws.com/nodejs-app:latest",
       "cpu": 0,
-      "memory": 1024,
       "portMappings": [
         {
           "name": "nodejs-app-5000-tcp",
@@ -17,8 +16,10 @@
       ],
       "essential": true,
       "environment": [],
+      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
+      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -26,14 +27,16 @@
           "awslogs-group": "/ecs/nodejs-app-task-definition",
           "awslogs-region": "ca-central-1",
           "awslogs-stream-prefix": "ecs"
-        }
+        },
+        "secretOptions": []
       }
     }
   ],
   "family": "nodejs-app-task-definition",
   "taskRoleArn": "arn:aws:iam::164905892123:role/ecsTaskExecutionRole",
   "executionRoleArn": "arn:aws:iam::164905892123:role/ecsTaskExecutionRole",
-  "revision": 13,
+  "networkMode": "awsvpc",
+  "revision": 15,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -56,19 +59,25 @@
       "name": "ecs.capability.execution-role-ecr-pull"
     },
     {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "placementConstraints": [],
-  "compatibilities": ["EC2"],
-  "requiresCompatibilities": ["EC2"],
+  "compatibilities": ["EC2", "FARGATE"],
+  "requiresCompatibilities": ["FARGATE"],
   "cpu": "1024",
-  "memory": "1024",
+  "memory": "3072",
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2023-11-12T09:31:07.921Z",
-  "registeredBy": "arn:aws:iam::164905892123:user/github-ecs-access",
+  "registeredAt": "2023-11-12T09:34:34.481Z",
+  "registeredBy": "arn:aws:iam::164905892123:user/walter",
   "tags": []
 }
